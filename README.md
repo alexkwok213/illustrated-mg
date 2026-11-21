@@ -14,7 +14,7 @@ git clone https://github.com/alexkwok213/illustrated-mg.git ~/.agents/skills/ill
 
 ## 跑通示例
 
-准备 Node.js 及 npm，复制模板到单独的制作目录。首次安装依赖和启动 Remotion 可能需要联网。
+准备 Node.js、npm 和可显示中文的系统字体（例如思源黑体、思源宋体），复制模板到单独的制作目录。首次安装依赖和启动 Remotion 可能需要联网。
 
 ```sh
 cp -R ~/.agents/skills/illustrated-mg/assets/remotion ./my-explainer
