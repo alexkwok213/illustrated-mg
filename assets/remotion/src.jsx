@@ -29,7 +29,18 @@ function Comparison({items,scene,previous,p}) {
     </div>;
   });
 }
-function Diagram({scene,age}) {
+function Diagram({scene,age,items}) {
+  const subject=items[scene.item];
+  if(scene.type==='case' && subject?.glyph==='cup') {
+    const p=ease(age/.65);
+    return <div style={{position:'absolute',left:152,top:540,width:776,height:640,background:green,color:cream,boxShadow:'14px 18px 0 #233a352b',borderRadius:12,transform:'rotate('+(-4+2*p)+'deg) translateY('+((1-p)*48)+'px)',display:'flex',alignItems:'center',flexDirection:'column',justifyContent:'center'}}>
+      <Cup color={subject.color} scale={1}/>
+      <div style={{width:'84%',marginTop:15,paddingTop:20,borderTop:'3px dashed #cbbfa6',display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+        <span style={{fontFamily:serif,fontSize:43}}>{scene.rows[0]}</span>
+        <strong style={{fontFamily:'Georgia,serif',fontSize:70}}>{subject.value}</strong>
+      </div>
+    </div>;
+  }
   return <div style={{position:'absolute',left:90,right:90,top:575}}>
     {scene.rows.map((row,i)=>{
       const p=ease((age-(scene.beats?.[i]??i*.4))/.45);
@@ -50,7 +61,7 @@ function Film({title,scenes,items,captions,audio}) {
       {scenes.map((s,i)=>s.chapter&&<div key={s.start} style={{flex:1,borderTop:'4px solid '+(i===index?red:'#c7bda7'),paddingTop:7,fontSize:22,color:i===index?red:ink,fontWeight:i===index?700:400}}>{s.chapter}</div>)}
     </div>
     <div style={{position:'absolute',top:263,left:83,right:70,fontFamily:serif,fontSize:87,fontWeight:800,lineHeight:1.18,whiteSpace:'pre-line',transform:'translateY('+(1-ease(age/.4))*18+'px)'}}>{scene.head}</div>
-    {scene.type==='compare'?<Comparison items={items} scene={scene} previous={scenes[index-1]} p={ease(age/.7)}/>:<Diagram scene={scene} age={age}/>}
+    {scene.type==='compare'?<Comparison items={items} scene={scene} previous={scenes[index-1]} p={ease(age/.7)}/>:<Diagram scene={scene} age={age} items={items}/>}
     <div style={{position:'absolute',top:1280,left:85,right:85,borderTop:'2px solid #b7ad95',paddingTop:25,color:red,fontFamily:serif,fontSize:42,fontWeight:700}}>{scene.note}</div>
     <div style={{position:'absolute',bottom:225,left:86,right:86,fontSize:46,fontWeight:600,lineHeight:1.5,textAlign:'center'}}>{caption?.text}</div>
     <div style={{position:'absolute',bottom:116,left:84,width:912,height:4,background:'#c5baa4'}}><div style={{height:4,width:(100*frame/durationInFrames)+'%',background:green}}/></div>
