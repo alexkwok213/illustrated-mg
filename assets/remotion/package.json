@@ -1,0 +1,15 @@
+{
+  "name": "illustrated-mg-template",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "studio": "remotion studio src.jsx",
+    "render": "remotion render src.jsx IllustratedMG out.mp4"
+  },
+  "dependencies": {
+    "remotion": "4.0.545",
+    "@remotion/cli": "4.0.545",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  }
+}
